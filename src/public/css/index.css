@@ -1,0 +1,43 @@
+.section__tab{
+    width:100%;
+    max-width: 1230px;
+    margin: 0 auto;
+    padding-left:50px;
+    list-style: none;
+    display: flex;
+}
+
+.section__tab li{
+    margin-left: 5%;
+}
+
+.here-now{
+    color: #ff0000;
+}
+
+.item-box__place {
+    margin: 0 auto;
+    padding: 30px 15px;
+    max-width: 1230px;
+}
+
+.item-box__list {
+    width: 100%;
+    list-style: none;
+}
+
+.item-box {
+    min-width: 100px;
+    margin-bottom: 40px;
+    margin-right: 5%;
+    width: 20%;
+    float: left;
+}
+
+.item-box img{
+    width: 100%;
+}
+
+.item-box__title {
+    margin-bottom: 40px;
+}

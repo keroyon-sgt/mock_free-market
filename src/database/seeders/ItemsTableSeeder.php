@@ -24,6 +24,7 @@ class ItemsTableSeeder extends Seeder
             'description' => 'スタイリッシュなデザインのメンズ腕時計',
             'image_url' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Armani+Mens+Clock.jpg',
             'condition' => 'a',
+            'stock' => 1,
         ];
         DB::table('items')->insert($param);
 
@@ -35,6 +36,7 @@ class ItemsTableSeeder extends Seeder
             'description' => '高速で信頼性の高いハードディスク',
             'image_url' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/HDD+Hard+Disk.jpg',
             'condition' => 'b',
+            'stock' => 1,
         ];
         DB::table('items')->insert($param);
 
@@ -46,6 +48,7 @@ class ItemsTableSeeder extends Seeder
             'description' => '新鮮な玉ねぎ3束のセット',
             'image_url' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/iLoveIMG+d.jpg',
             'condition' => 'c',
+            'stock' => 1,
         ];
         DB::table('items')->insert($param);
 
@@ -57,6 +60,7 @@ class ItemsTableSeeder extends Seeder
             'description' => 'クラシックなデザインの革靴',
             'image_url' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Leather+Shoes+Product+Photo.jpg',
             'condition' => 'd',
+            'stock' => 1,
         ];
         DB::table('items')->insert($param);
 
@@ -68,6 +72,7 @@ class ItemsTableSeeder extends Seeder
             'description' => '高性能なノートパソコン',
             'image_url' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Living+Room+Laptop.jpg',
             'condition' => 'a',
+            'stock' => 1,
         ];
         DB::table('items')->insert($param);
 
@@ -79,6 +84,7 @@ class ItemsTableSeeder extends Seeder
             'description' => '高音質のレコーディング用マイク',
             'image_url' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Music+Mic+4632231.jpg',
             'condition' => 'b',
+            'stock' => 1,
         ];
         DB::table('items')->insert($param);
 
@@ -90,6 +96,7 @@ class ItemsTableSeeder extends Seeder
             'description' => 'おしゃれなショルダーバッグ',
             'image_url' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Purse+fashion+pocket.jpg',
             'condition' => 'c',
+            'stock' => 1,
         ];
         DB::table('items')->insert($param);
 
@@ -101,6 +108,7 @@ class ItemsTableSeeder extends Seeder
             'description' => '使いやすいタンブラー',
             'image_url' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Tumbler+souvenir.jpg',
             'condition' => 'd',
+            'stock' => 1,
         ];
         DB::table('items')->insert($param);
 
@@ -112,6 +120,7 @@ class ItemsTableSeeder extends Seeder
             'description' => '手動のコーヒーミル',
             'image_url' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Waitress+with+Coffee+Grinder.jpg',
             'condition' => 'a',
+            'stock' => 1,
         ];
         DB::table('items')->insert($param);
 
@@ -123,6 +132,7 @@ class ItemsTableSeeder extends Seeder
             'description' => '便利なメイクアップセット',
             'image_url' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/%E5%A4%96%E5%87%BA%E3%83%A1%E3%82%A4%E3%82%AF%E3%82%A2%E3%83%83%E3%83%95%E3%82%9A%E3%82%BB%E3%83%83%E3%83%88.jpg',
             'condition' => 'b',
+            'stock' => 1,
         ];
         DB::table('items')->insert($param);
     }

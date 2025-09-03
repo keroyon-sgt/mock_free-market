@@ -13,7 +13,8 @@ class AddressRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        // return false;    //後で戻す
+        return true;
     }
 
     /**

@@ -1,0 +1,17 @@
+.item__content{
+    display: flex;
+}
+
+.item__image-place{
+    width: 100%;
+    padding: 5%;
+}
+
+.item__image-wrapper img{
+    width: 100%;
+}
+
+.item__detail-place{
+    width: 100%;
+    background-color: azure;
+}

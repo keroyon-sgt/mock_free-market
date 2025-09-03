@@ -17,14 +17,14 @@ class CreateItemsTable extends Migration
             $table->id();
             $table->string('title');
             $table->integer('price');
-            $table->string('brand');
+            $table->string('brand')->nullable();
             $table->text('description');
-            $table->string('image_url');
+            $table->string('image_path');
             // $table->binary('image');
             $table->tinyText('condition');
             $table->tinyInteger('stock');
             $table->timestamps();
-            $table->tinyInteger('is_deleted');
+            $table->tinyInteger('is_deleted')->nullable();
         });
     }
 

@@ -1,6 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ItemController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
+
+
+use App\Providers\FortifyServiceProvider;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,18 +26,19 @@ Route::get('/', [ItemController::class, 'index']);
 
 Route::get('/register', [AuthController::class, 'registerForm']);
 Route::post('/register', [AuthController::class, 'register']);
+Route::get('/verify', [AuthController::class, 'verify']);
 
 Route::get('/login', [AuthController::class, 'loginForm']);
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::get('/item', [ItemController::class, 'item']);
-Route::get('/purchase', [ItemController::class, 'confirm']);
+Route::get('/purchase/address', [ItemController::class, 'addressForm']);
+Route::post('/purchase/address', [ItemController::class, 'addressSet']);
+Route::get('/item/{item_id}', [ItemController::class, 'item'])->name('item');
+Route::get('/purchase/{item_id}', [ItemController::class, 'purchaseForm']);
 Route::post('/purchase', [ItemController::class, 'purchase']);
-Route::get('/purchase/address', [ItemController::class, 'deliveryForm']);
-Route::post('/purchase/address', [ItemController::class, 'delivery']);
 
-Route::get('/sell', [ItemController::class, 'item']);
+Route::get('/sell', [ItemController::class, 'sellForm']);
 Route::post('/sell', [ItemController::class, 'store']);
 
 Route::get('/mypage', [UserController::class, 'mypage']);
