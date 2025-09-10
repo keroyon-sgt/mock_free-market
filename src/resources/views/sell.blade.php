@@ -10,20 +10,19 @@
     <div class="register-form__heading">
         <h2>商品の出品</h2>
     </div>
-    <form class="form" action="/register" method="post">@csrf
+    <form class="form" action="/sell" method="post" enctype="multipart/form-data">@csrf
         <h3>商品の詳細</h3>
         <div class="form__group">
             <div class="form__group-title">
                 <span class="form__label--item">商品画像 </span>
             </div>
 
-
             <div class="form__group-content form__image-place">
                 <div class="form__input--image">
-                <input type="file" name="portrait" accept="image/png, image/jpeg" />
+                <input type="file" name="image" accept="image/png, image/jpeg" />
                 </div>
                 <div class="form__error">
-                @error('name')
+                @error('image')
                 {{ $message }}
                 @enderror
                 </div>
@@ -37,12 +36,12 @@
                 <div class="form__checkbox-category">
 
 @foreach ($categories as $category)
-                        <label><input type="checkbox" name="category" value="{{$category['id']}}">{{$category['content']}}</label>
+                        <label><input type="checkbox" name="category[]" value="{{$category['id']}}">{{$category['content']}}</label>
 @endforeach
 
                     </div>
                 <div class="form__error">
-                @error('name')
+                @error('category')
                 {{ $message }}
                 @enderror
                 </div>
@@ -67,7 +66,7 @@
                     </select>
                 </div>
                 <div class="form__error">
-                    @error('category_id')
+                    @error('condition')
                         {{ $message }}
                     @enderror
                 </div>
@@ -88,7 +87,7 @@
                     <input type="text" name="title" value="{{ old('postal_code') }}" placeholder="例：123-4567" />
                 </div>
                 <div class="form__error">
-                    @error('postal_code')
+                    @error('title')
                     {{ $message }}
                     @enderror
                 </div>
@@ -105,7 +104,7 @@
                         <input type="text" name="brand" value="{{ old('address') }}" />
                     </div>
                     <div class="form__error">
-                        @error('address')
+                        @error('brand')
                             {{ $message }}
                         @enderror
                     </div>
@@ -119,10 +118,10 @@
                 </div>
                 <div class="form__group-content">
                     <div class="form__input--textarea">
-                        <textarea name="detail" >{{ old('detail') }}</textarea>
+                        <textarea name="description" >{{ old('description') }}</textarea>
                     </div>
                     <div class="form__error">
-                        @error('detail')
+                        @error('description')
                             {{ $message }}
                         @enderror
                     </div>
@@ -142,7 +141,7 @@
                         <input type="text" name="price" placeholder="&#165;" value="{{ old('building') }}" />
                     </div>
                     <div class="form__error">
-                        @error('building')
+                        @error('price')
                             {{ $message }}
                         @enderror
                     </div>

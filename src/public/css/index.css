@@ -2,9 +2,12 @@
     width:100%;
     max-width: 1230px;
     margin: 0 auto;
+    padding-top: 30px;
     padding-left:50px;
     list-style: none;
     display: flex;
+    font-size: 16px;
+    font-weight: bold;
 }
 
 .section__tab li{
@@ -14,6 +17,22 @@
 .here-now{
     color: #ff0000;
 }
+
+
+
+.section__tab-button{
+    padding: 3px 15px;
+    border: none;
+    background: #fff;
+    color: #000;
+    cursor: pointer;
+    margin-left: 20px;
+    border-radius: 3px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+
 
 .item-box__place {
     margin: 0 auto;
@@ -32,6 +51,7 @@
     margin-right: 5%;
     width: 20%;
     float: left;
+    position: relative;
 }
 
 .item-box img{
@@ -40,4 +60,8 @@
 
 .item-box__title {
     margin-bottom: 40px;
+}
+
+.item-box__sold {
+    position: absolute;
 }

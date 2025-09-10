@@ -16,7 +16,7 @@ class Item extends Model
         'price',
         'brand',
         'description',
-        'image_url',
+        'image_path',
         'condition',
         'stock',
         'detail',

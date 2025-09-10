@@ -15,7 +15,7 @@
 <div class="item__content">
     <div class="item__image-place">
         <div class="item__image-wrapper">
-            <img src="{{ $item['image_url'] }}" alt="{{ $item['title'] }}" />
+            <img src="{{ asset('storage/' . $item->image_path) }}" alt="{{ $item['title'] }}" />
         </div>
     </div>
     <div class="item__detail-place">
@@ -25,12 +25,17 @@
             <div class="item__price">{{ $item['price'] }}</div>
             <div class="item__responses">
                 <div class="item__responses-likes">
-                    ☆<br />
-                    <span class="item__responses-count">item_like_count</span>
+@if($duplication)
+                        <a href="/like/{{ $item->id }}">☆</a>
+@else
+                        ★
+@endif
+                    <br />
+                    <span class="item__responses-count">{{$likes_count}}</span>
                 </div>
                 <div class="item__responses-comments">
                     💭<br />
-                    <span class="item__responses-count">item_comment_count</span>
+                    <span class="item__responses-count">{{$comments_count}}</span>
                 </div>
             </div>
         </p>
@@ -46,13 +51,32 @@
                 <tr>
                     <th>カテゴリー</th>
                     <td>
-                        <span class="item__category">foreach</span>
+                        <ul class="item__category">
+                        @foreach ($category_list as $category)
+                            <li>{{ $category }}</li>
+                        @endforeach
+                        </ul>
                     </td>
                 </tr>
                 <tr>
                     <th>商品の状態</th>
                     <td>
-                        if
+<?php
+switch ($item['condition']) {
+    case 'a':
+        echo "良好";
+        break;
+    case 'b':
+        echo "目立った傷や汚れなし";
+        break;
+    case 'c':
+        echo "やや傷や汚れあり";
+        break;
+    case 'd':
+        echo "状態が悪い";
+        break;
+}
+?>
                     </td>
                 </tr>
             </table>
@@ -65,7 +89,11 @@
                 <span class="">カテゴリー</span>
             </div>
             <div class="item__information-content">
-                <span class="item__category">foreach</span>
+                <ul class="item__category">
+                    @foreach ($category_list as $category)
+                        <li>{{ $category }}</li>
+                    @endforeach
+                </ul>
             </div>
         </div>
         <div class="item__information">
@@ -73,46 +101,65 @@
                 <span class="">商品の状態</span>
             </div>
             <div class="item__information-content">
-                    if
+<?php
+switch ($item['condition']) {
+    case 'a':
+        echo "良好";
+        break;
+    case 'b':
+        echo "目立った傷や汚れなし";
+        break;
+    case 'c':
+        echo "やや傷や汚れあり";
+        break;
+    case 'd':
+        echo "状態が悪い";
+        break;
+}
+?>
             </div>
         </div>
 
 
-
-
-
-
-
-
-
-            <div class="item__categories">
-                {{ $item['id'] }}
-                foreach
-            </div>
-            <div class="item__condition">
-                {{ $item['id'] }}
-                foreach
-            </div>
         </p>
         <p class="item__comments">
-            <h3>コメント($comments_count)</h3>
-            foreach
+            <h3>コメント({{$comments_count}})</h3>
+
+                <ul>
+            @foreach ($comments as $comment)
+                        <li>
+                            <span class="item__comments-icon">
+                                <img src="/storage/{{ $comment->user->portrait_path }}" alt="{{ $comment->user->name }}" />
+                            </span>
+                            <span class="item__comments-name">
+                                {{ $comment->user->name }}
+                            </span>
+                            <div>{{ $comment->comment }}</div>
+                        </li>
+            @endforeach
+                </ul>
+            
+            @foreach ($comments as $comment)
             <div>
                 <span class="item__comments-icon">
-                    <img src="" alt="">
+                    <img src="/storage/{{ $comment->user->portrait_path }}" alt="{{ $comment->user->name }}" />
                 </span>
                 <span class="item__comments-name">
-                    $username
+                    {{ $comment->user->name }}
                 </span>
+                <div>{{ $comment->comment }}</div>
             </div>
+            @endforeach
+            
+            
             <div class="item__comment-form">
                 <span class="comments-form__label">商品へのコメント</span>
-                <form action="" method="">@csrf
+                <form action="/item/{{ $item->id }}" method="POST">@csrf
                     <div class="form__input--textarea">
-                        <textarea name="detail" placeholder="" ></textarea>
+                        <textarea name="comment" placeholder="" ></textarea>
                     </div>
                     <div class="form__error">
-                        @error('detail')
+                        @error('comment')
                             {{ $message }}
                         @enderror
                     </div>

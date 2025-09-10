@@ -10,14 +10,15 @@
     <div class="register-form__heading">
         <h2>プロフィール設定</h2>
     </div>
-    <form class="form" action="/register" method="post">@csrf
+    <form class="form" action="/mypage/profile" method="post" enctype="multipart/form-data">@csrf
         <div class="form__group">
             <div class="form__group-profile">
-                <img src="" alt="portrait">
+                <img src="{{ asset('storage/' . $user->portrait_path) }}" alt="{{ $user->name }}">
             </div>
             <div class="form__group-content">
                 <div class="form__input--image">
                 <input type="file" name="portrait" accept="image/png, image/jpeg" />
+                
                 </div>
                 <div class="form__error">
                 @error('name')
@@ -32,7 +33,7 @@
             </div>
             <div class="form__group-content">
                 <div class="form__input--text">
-                <input type="text" name="name" value="{{ old('name') }}" placeholder="例：山田&nbsp太郎" />
+                <input type="text" name="name" value="{{ $user['name'] }}" placeholder="例：山田&nbsp太郎" />
                 </div>
                 <div class="form__error">
                 @error('name')
@@ -47,7 +48,7 @@
             </div>
             <div class="form__group-content">
                 <div class="form__input--text">
-                    <input type="text" name="postal_code" value="{{ old('postal_code') }}" placeholder="例：123-4567" />
+                    <input type="text" name="postal_code" value="{{ $user['postal_code'] }}" placeholder="例：123-4567" />
                 </div>
                 <div class="form__error">
                     @error('postal_code')
@@ -64,7 +65,7 @@
                 </div>
                 <div class="form__group-content">
                     <div class="form__input--text">
-                        <input type="text" name="address" placeholder="例：東京都渋谷区千駄ヶ谷1-2-3" value="{{ old('address') }}" />
+                        <input type="text" name="address" placeholder="例：東京都渋谷区千駄ヶ谷1-2-3" value="{{ $user['address'] }}" />
                     </div>
                     <div class="form__error">
                         @error('address')
@@ -80,7 +81,7 @@
                 </div>
                 <div class="form__group-content">
                     <div class="form__input--text">
-                        <input type="text" name="building" placeholder="例：千駄ヶ谷マンション" value="{{ old('building') }}" />
+                        <input type="text" name="building" placeholder="例：千駄ヶ谷マンション" value="{{ $user['building'] }}" />
                     </div>
                     <div class="form__error">
                         @error('building')

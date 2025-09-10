@@ -12,7 +12,7 @@
     </div>
     <form class="form" action="/verification" method="get">
         @csrf
-        <input type="hidden" name="path(kari)" value=" " readonly />
+        <input type="hidden" name="path(kari)" value=" " />
         <div class="form__button">
             <button class="form__button-submit" type="submit">認証はこちらから</button>
         </div>

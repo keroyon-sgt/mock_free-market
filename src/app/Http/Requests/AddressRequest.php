@@ -25,7 +25,17 @@ class AddressRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'postal_code' => ['required'],
+            'address' => ['required'],
+            'building',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'postal_code.required' => '郵便番号を入力してください',
+            'address.required' => '住所を入力してください',
         ];
     }
 }

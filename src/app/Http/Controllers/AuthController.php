@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\LoginRequest;
+
+// use Laravel\Fortify\Http\Requests\LoginRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -32,57 +37,17 @@ class AuthController extends Controller
 
 
 
-    public function registerForm()
-    {
-        
-        return view('register');
-    }
-
-    public function register(UserRequest $request)
-    {
-        $user = $request->only([
-            'name',
-            'email',
-            'password',
-            // 'password' => Hash::make($request->password),
-        ]);
-        
-        $user['password']=Hash::make($request->password);
-
-echo '<br />user = ';
-var_dump($user);
-echo '<br />Hash:make = ';
-var_dump(Hash::make($request->password));
-
-        User::create($user);
-
-        return redirect('login');
-    }
-    
-public function verify()
-    {
-        // メールを送る処理
-        return view('verify');
-    }
-    
-public function verification()
-    {
-        
-        return redirect('profile')->with('message', '認証しました');
-    }
-    
-
     // public function store(LoginRequest $request)
     public function store(LoginRequest $request)
     {
-echo '<br />here4! ';
-echo '<br />request = ';
-var_dump($request->only('email', 'password'));
+// echo '<br />here4! ';
+// echo '<br />request = ';
+// var_dump($request->only('email', 'password'));
 
-echo '<br />get = ';
-var_dump($_GET);
-echo '<br />post = ';
-var_dump($_POST);
+// echo '<br />get = ';
+// var_dump($_GET);
+// echo '<br />post = ';
+// var_dump($_POST);
 
         return $this->loginPipeline($request)->then(function ($request) {
             return app(LoginResponse::class);
@@ -90,43 +55,11 @@ var_dump($_POST);
     }
 
 
-    public function login(AuthRequest $request)
+    public function login(LoginRequest $request)
     {
 
-echo '<br />AuthController';
-echo '<br />here2! ';
-//         $user = $request->only([
-//             'email',
-//             'password',
-//         ]);
-        
-// echo '<br />get = ';
-// var_dump($_GET);
-
-// echo '<br />post = ';
-// var_dump($_POST);
-
-// echo '<br />session( = ';
-// var_dump(session('txt'));
-
-// session()->put('txt', 'TEST2');
-
-// echo '<br />session( = ';
-// var_dump(session('txt'));
-
-    //     // User::create($user);
-        /* Validation */
-        // $request->validate([
-        //     'name' => 'required',
-        //     'email' => 'required|email|unique:users',
-        //     'password' => 'required|confirmed|min:8',
-        // ]);
-
-        /*
-        Database Insert
-        */
+        /* Database Insert */
         $user = $request->only([
-            // 'name',
             'email',
             'password',
         ]);
@@ -135,16 +68,17 @@ echo '<br />here2! ';
         //     'email' => ['required', 'email'],
         //     'password' => ['required'],
         // ]);
-// exit;
+
         // ログインに成功したとき
         if (Auth::attempt($user)) {
             $request->session()->regenerate();
-            // return redirect()->route('dashboard');
-            return redirect('admin')->with('message', 'ログインしました');
+            
+            // return redirect()->intended('/')->with('message', 'ログインしました');
+            return redirect('/')->with('message', 'ログインしました');
         }
 
         // 上記のif文でログインに成功した人以外(=ログインに失敗した人)がここに来る
-        // return redirect()->back()->with('message', 'メールアドレスかパスワードが間違っています。');
+        return redirect()->back()->with('message', 'メールアドレスかパスワードが間違っています。');
 
 
 // echo '<br />user = ';
@@ -160,7 +94,7 @@ echo '<br />here2! ';
 // exit;
         // return redirect('admin')->with('message', 'ログインしました');
         // return redirect('login');
-        return view('login')->with('message', 'メールアドレスかパスワードが間違っています。');
+        // return view('login')->with('message', 'メールアドレスかパスワードが間違っています。');
     }
     
     public function logout(Request $request)
