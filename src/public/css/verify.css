@@ -1,0 +1,43 @@
+.register-form__content {
+    margin: 0 auto;
+    padding: 30px 15px;
+    max-width: 1230px;
+}
+
+.register-form__heading {
+    margin-top: 120px;
+    text-align: center;
+}
+
+.form {
+    margin: 0 auto;
+    width: 40%;
+    text-align: center;
+}
+
+.form__button {
+    /* margin-top: 50px; */
+}
+
+.form__button-submit {
+    height: 50px;
+    width: 40%;
+    padding: 10px;
+    margin-top: 50px;
+    border:1px solid #888;
+    background-color: #ddd;
+    color: #000;
+    cursor: pointer;
+    text-align: center;
+    font-size: 18px;
+    border-radius: 8px;
+}
+
+.resend__link {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.resend__link a {
+    text-decoration: none;
+}

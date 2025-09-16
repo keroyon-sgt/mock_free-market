@@ -1,10 +1,64 @@
+.mypage__header {
+    padding:60px 0 20px 20%;
+    display: flex;
+}
+
+.mypage__image img{
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+}
+.mypage__detail {
+    width: 20%;
+    margin: 30px 0 0 10%;
+}
+.mypage__name{
+    margin: 0px;
+    padding: 0px;
+    font-size: 30px;
+    white-space: nowrap;
+}
+
+.mypage__button-edit {
+    margin-right: 20%;
+    margin-left: auto;
+}
+
+.mypage__button-edit button{
+    width: 100%;
+    padding: 5px 20px;
+    margin-top: 35px;
+    border: 1px solid #f55;
+    background-color: #fff;
+    color: #f55;
+    cursor: pointer;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 5px;
+    white-space: nowrap;
+}
+
 .section__tab {
     width: 100%;
     max-width: 1230px;
     margin: 0 auto;
-    padding-left: 50px;
+    padding: 30px 0 0 50px;
+    /* padding-top: 30px; */
+    /* padding-left: 50px; */
     list-style: none;
     display: flex;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.section__tab-button {
+    border: none;
+    background: #fff;
+    color: #000;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
 }
 
 .section__tab li {
@@ -13,6 +67,8 @@
 
 .here-now {
     color: #ff0000;
+    font-size: 16px;
+    font-weight: bold;
 }
 
 .item-box__place {
@@ -32,6 +88,12 @@
     margin-right: 5%;
     width: 20%;
     float: left;
+    position: relative;
+}
+
+.item-box a {
+    text-decoration: none;
+    color: inherit;
 }
 
 .item-box img {
@@ -41,3 +103,10 @@
 .item-box__title {
     margin-bottom: 40px;
 }
+
+.item-box__sold {
+    position: absolute;
+}
+
+
+

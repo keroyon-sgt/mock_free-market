@@ -1,29 +1,34 @@
+@php
+    $title = 'プロフィール設定　';
+@endphp
+
 @extends('layouts.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/register.css') }}?d={{str_pad(rand(0,99999999),8,0, STR_PAD_LEFT)}}">
+<link rel="stylesheet" href="{{ asset('css/profile.css') }}?d={{str_pad(rand(0,99999999),8,0, STR_PAD_LEFT)}}">
 @endsection
 
 @section('content')
 
-<div class="register-form__content">
-    <div class="register-form__heading">
+<div class="profile__content">
+    <div class="profile__heading">
         <h2>プロフィール設定</h2>
     </div>
     <form class="form" action="/mypage/profile" method="post" enctype="multipart/form-data">@csrf
         <div class="form__group">
-            <div class="form__group-profile">
-                <img src="{{ asset('storage/' . $user->portrait_path) }}" alt="{{ $user->name }}">
-            </div>
-            <div class="form__group-content">
-                <div class="form__input--image">
-                <input type="file" name="portrait" accept="image/png, image/jpeg" />
-                
+            <div class="form__group-flex">
+                <div class="form__group-profile">
+                    <img src="{{ asset('storage/' . $user->portrait_path) }}" alt="{{ $user->name }}">
                 </div>
-                <div class="form__error">
-                @error('name')
-                {{ $message }}
-                @enderror
+                <div class="form__group-content">
+                    <div class="form__file-place">
+                        <input class="form__file" type="file" name="portrait" accept="image/png, image/jpeg" />
+                    </div>
+                    <div class="form__error">
+                    @error('name')
+                    {{ $message }}
+                    @enderror
+                    </div>
                 </div>
             </div>
         </div>
@@ -33,7 +38,7 @@
             </div>
             <div class="form__group-content">
                 <div class="form__input--text">
-                <input type="text" name="name" value="{{ $user['name'] }}" placeholder="例：山田&nbsp太郎" />
+                <input type="text" name="name" value="{{ $user['name'] }}" />
                 </div>
                 <div class="form__error">
                 @error('name')

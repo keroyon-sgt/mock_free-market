@@ -1,3 +1,7 @@
+@php
+    $title = '';
+@endphp
+
 @extends('layouts.app')
 
 @section('css')
@@ -55,7 +59,6 @@ $(function () {
                 <button class="section__tab-button" onclick="location.href='/login'">マイリスト</button>
             </li>
     @endif
-            
         </ul>
 <hr>
 <!-- ------------------------------------------------- -->
@@ -67,7 +70,10 @@ $(function () {
         <ul class="item-box__list">
     @foreach ($items as $item)
             <li class="item-box">
+    <!-- _if($item['stock']) -->
                 <a href="{{ route('item',['item_id' => $item['id'] ]) }}">
+    <!-- _endif -->
+
     @if(!$item['stock'])
                     <div class="item-box__sold">
                         <img src="{{ asset('img/sold.png') }}" alt="SOLD" />
@@ -77,7 +83,10 @@ $(function () {
                         <img src="{{ asset('storage/' . $item->image_path) }}" alt="{{ $item['title'] }}" />
                     </div>
                     <div class="item-box__title">{{ $item['title'] }}</div>
+
+    <!-- _if($item['stock']) -->
                 </a>
+    <!-- _endif -->
             </li>
     @endforeach
         </ul>

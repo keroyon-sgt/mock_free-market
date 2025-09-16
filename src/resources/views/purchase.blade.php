@@ -1,7 +1,11 @@
+@php
+    $title = '購入手続き　';
+@endphp
+
 @extends('layouts.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/item.css') }}?d={{str_pad(rand(0,99999999),8,0, STR_PAD_LEFT)}}">
+<link rel="stylesheet" href="{{ asset('css/purchase.css') }}?d={{str_pad(rand(0,99999999),8,0, STR_PAD_LEFT)}}">
 @endsection
 
 @section('script')
@@ -48,23 +52,21 @@
 
 <div class="item__content">
     <div class="item__left-column">
-        <div>
-            <div>
-                <div class="item__image-wrapper">
-                    <img src="{{ asset('storage/' . $item->image_path) }}" alt="{{ $item['title'] }}" />
-                </div>
+        <div class="item__image-place">
+            <div class="item__image-wrapper">
+                <img src="{{ asset('storage/' . $item->image_path) }}" alt="{{ $item['title'] }}" />
             </div>
             <div class="item__detail-place">
                 <p class="item__header">
                     <h2>{{ $item['title'] }}</h2>
-                    <div class="item__price">{{ $item['price'] }}</div>
+                    <div class="item__price"><span class="item__price-yen">￥</span>{{ $price_formed }}</div>
                 </p>
             </div>
         </div>
-        <div>
-            <div>支払方法</div>
+        <div class="item__method-place">
+            <h3>支払い方法</h3>
             <div>
-                <form class="form" action="/purchase" method="post">
+                <form action="/purchase" method="post">
                     @csrf
                 <input type="hidden" name="item_id" value="{{ $item['id'] }}" />
 
@@ -75,21 +77,21 @@
                 </select>
             </div>
         </div>
-        <div>
-            <div>
-                <span>配送先</span>
-                <span class="login__link">
+        <div class="item__delivery-place">
+            <div class="item__delivery-header">
+                <h3>配送先</h3>
+                <div class="item__delivery-edit">
                     <a class="login__button-submit" href="/purchase/address">変更する</a>
-                </span>
-                <div>
-                    <div>〒{{ $delivery['postal_code'] }}</div>
-                    <div>{{ $delivery['address'] }}</div>
-                    <div>{{ $delivery['building'] }}</div>
                 </div>
-                <input type="text" name="postal_code" value="{{ $delivery['postal_code'] }}" readonly />
-                <input type="text" name="address" value="{{ $delivery['address'] }}" readonly />
-                <input type="text" name="building" value="{{ $delivery['building'] }}" readonly />
             </div>
+            <div class="item__delivery-content">
+                <div>〒{{ $delivery['postal_code'] }}</div>
+                <div>{{ $delivery['address'] }}</div>
+                <div>{{ $delivery['building'] }}</div>
+            </div>
+            <input type="hidden" name="postal_code" value="{{ $delivery['postal_code'] }}" readonly />
+            <input type="hidden" name="address" value="{{ $delivery['address'] }}" readonly />
+            <input type="hidden" name="building" value="{{ $delivery['building'] }}" readonly />
         </div>
     </div>
     <div class="item__right-column">
@@ -98,20 +100,20 @@
                     <tr>
                         <th>商品代金</th>
                         <td>
-                            <span class="purchase__confirm">{{ $item['price'] }}</span>
-                            <input type="text" name="price" value="{{ $item['price'] }}" readonly />
+                            <span class="purchase__confirm"><span class="item__price-yen">￥</span>{{ $price_formed }}</span>
+                            <input type="hidden" name="price" value="{{ $item['price'] }}" readonly />
                         </td>
                     </tr>
                     <tr>
                         <th>支払方法</th>
                         <td>
-                            <div class="purchase__confirm" id="purchase__confirm-method2">支払方法を選択してください</div>
+                            <div class="purchase__confirm" id="purchase__confirm-method">支払方法を<br />選択してください</div>
                         </td>
                     </tr>
                 </table>
 
 
-            <div class="item__information">
+            <!-- <div class="item__information">
                 <div class="item__information-title">
                     <span class="">商品代金</span>
                 </div>
@@ -126,12 +128,12 @@
                 <div class="item__information-content">
                         if
                 </div>
-                <div class="purchase__confirm" id="purchase__confirm-method">選択してください</div>
-            </div>
+                <div class="purchase__confirm" id="purchase__confirm-method2">選択してください</div>
+            </div> -->
 
         </div>
-            <div class="form__button">
-                <button class="form__button-submit" type="submit">購入する</button>
+            <div class="item__button-purchase" >
+                <button type="submit">購入する</button>
             </div>
         </form>
 
@@ -142,7 +144,6 @@
     </div>
 </div>
 
-<hr>
 <!-- ------------------------------------------------------------ -->
 
 

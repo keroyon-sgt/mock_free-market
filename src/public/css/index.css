@@ -54,12 +54,18 @@
     position: relative;
 }
 
+.item-box a{
+    text-decoration: none;
+    color: inherit;
+}
+
 .item-box img{
     width: 100%;
 }
 
 .item-box__title {
     margin-bottom: 40px;
+    
 }
 
 .item-box__sold {

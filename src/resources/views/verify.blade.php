@@ -1,7 +1,11 @@
+@php
+    $title = '認証　';
+@endphp
+
 @extends('layouts.app_simpleHeader')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/register.css') }}?d={{str_pad(rand(0,99999999),8,0, STR_PAD_LEFT)}}">
+<link rel="stylesheet" href="{{ asset('css/verify.css') }}?d={{str_pad(rand(0,99999999),8,0, STR_PAD_LEFT)}}">
 @endsection
 
 @section('content')
@@ -17,8 +21,8 @@
             <button class="form__button-submit" type="submit">認証はこちらから</button>
         </div>
     </form>
-    <div class="login__link">
-        <a class="login__button-submit" href="/login">認証メールを再送する</a>
+    <div class="resend__link">
+        <a href="/login">認証メールを再送する</a>
     </div>
 </div>
 @endsection

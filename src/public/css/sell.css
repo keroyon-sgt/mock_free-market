@@ -1,0 +1,203 @@
+.form__content {
+    margin: 0 auto;
+    padding: 30px 15px;
+    max-width: 1230px;
+}
+
+.form__heading {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.form__heading h2 {
+    font-size: 30px;
+}
+
+.form {
+    margin: 0 auto;
+    width: 60%;
+    min-width: 300px;
+    text-align: center;
+}
+
+.form h3{
+    text-align: left;
+    border-bottom: 2px solid #888;
+    color: #666;
+    font-size: 26px;
+}
+
+.form__group {
+    margin-bottom: 5px;
+}
+
+.form__group-title {
+    text-align: left;
+    font-weight: bolder;
+    padding-bottom: 5px;
+}
+
+.form__file-place{
+    border: 1px dotted #888;
+}
+
+.form__file::file-selector-button,
+.form__file::-webkit-file-upload-button{
+    width: 100%;
+    height: 100%;
+    padding: 50px 25px;
+    cursor: pointer;
+    opacity: 0;
+    position: relative;
+}
+
+.form__file::before{
+    width: 180px;
+    height: 40px;
+    margin: 40px;
+    padding: 4px;
+    border: 1px solid #f55;
+    background-color: #fff;
+    color: #f55;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    position: absolute;
+    content: "画像を選択する";
+}
+
+.form__checkbox-category {
+    margin-top: 15px;
+    text-align: left;
+}
+
+.form__checkbox-category label {
+    margin-right: 15px;
+    line-height: 50px
+}
+
+.form__checkbox-category input {
+    display: none;
+}
+
+.form__checkbox-category span {
+    padding: 3px 15px;
+    color: #f55;
+    font-size: 15px;
+    border: 3px solid #f55;
+    border-radius: 20px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.form__checkbox-category input:checked+span {
+    color: #FFF;
+    background: #f55;
+    border: 3px solid #f55;
+}
+
+.form__input-text input {
+    padding: 10px;
+    width: 100%;
+    height: 40px;
+    border: 1px solid #888;
+    border-radius: 5px;
+    font-size: 18px;
+    /* appearance: none; */
+}
+
+.form__select-condition {
+    width: 100%;
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+}
+
+.form__select-condition::before {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    content: "";
+    width: 0;
+    height: 0;
+    border-top: 10px solid #888;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+}
+
+.form__select-condition select {
+    margin-right: 20px;
+    padding: 10px;
+    width: 100%;
+    height: 40px;
+    border: 1px solid #888;
+    border-radius: 5px;
+    appearance: none;
+    cursor: pointer;
+}
+
+.form__input-textarea textarea {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 18px;
+}
+
+.form__input-price {
+    width: 100%;
+    position: relative;
+    display: inline-block;
+}
+
+.form__input-price::before {
+    content: "￥";
+    position: absolute;
+    left: 10px;
+    top: 5px;
+}
+
+.form__input-price input {
+    padding: 10px 10px 10px 30px;
+    width: 100%;
+    height: 40px;
+    border: 1px solid #888;
+    border-radius: 5px;
+    font-size: 18px;
+}
+
+.form__button {
+    margin-top: 20px;
+}
+
+.form__button-submit {
+    height: 40px;
+    width: 100%;
+    padding: 5px;
+    margin-top: 10px;
+    border: none;
+    background-color: #f55;
+    color: #fff;
+    cursor: pointer;
+    text-align: center;
+    font-size: 18px;
+    border-radius: 3px;
+}
+
+.form__error {
+    height: 20px;
+    color: #ff0000;
+    text-align: left;
+}
+
+.login__link {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.login__link a {
+    text-decoration: none;
+}

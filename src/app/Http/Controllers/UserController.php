@@ -162,7 +162,8 @@ echo '<br />profileForm ';
 // var_dump($user->portrait_path);
         
         if($request['page']=='buy'){
-            $items = Purchase::where('user_id', $user['id'])->get();
+            $items = Purchase::with('Item')->where('user_id', $user['id'])->get();
+
         }else{
             $items = Item::where('user_id', $user['id'])->get();
         }
@@ -178,7 +179,7 @@ echo '<br />profileForm ';
 // echo '<br /><br />get = ';
 // var_dump($_GET);
 
-        return view('mypage', compact('user', 'items'));
+        return view('mypage', compact('user', 'items', 'request'));
     }
 
 

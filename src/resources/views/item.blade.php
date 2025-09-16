@@ -1,3 +1,7 @@
+@php
+    $title = '商品詳細　';
+@endphp
+
 @extends('layouts.app')
 
 @section('css')
@@ -5,12 +9,6 @@
 @endsection
 
 @section('content')
-<?php
-
-// echo '<br /><br />item = ';
-// var_dump($item);
-// exit;
-?>
 
 <div class="item__content">
     <div class="item__image-place">
@@ -19,30 +17,31 @@
         </div>
     </div>
     <div class="item__detail-place">
-        <p class="item__header">
-            <h2>{{ $item['title'] }}</h2>
+        <div class="item__header">
+            <h2 class="item__header-title">{{ $item['title'] }}</h2>
             <div class="item__brand">{{ $item['brand'] }}</div>
-            <div class="item__price">{{ $item['price'] }}</div>
+            <div class="item__price"><span class="item__price-yen">￥</span>{{ $item['price'] }}<span class="item__price-tax">（税込）</span></div>
             <div class="item__responses">
                 <div class="item__responses-likes">
 @if($duplication)
-                        <a href="/like/{{ $item->id }}">☆</a>
+                        <img src="/img/star_on.png" alt="like" />
 @else
-                        ★
+                        <a href="/like/{{ $item->id }}">
+                            <img src="/img/star_off.png" alt="like" />
+                        </a>
 @endif
-                    <br />
-                    <span class="item__responses-count">{{$likes_count}}</span>
+                    <div class="item__responses-count">{{$likes_count}}</div>
                 </div>
                 <div class="item__responses-comments">
-                    💭<br />
-                    <span class="item__responses-count">{{$comments_count}}</span>
+                    <img src="/img/balloon.png" alt="like" />
+                    <div class="item__responses-count">{{$comments_count}}</div>
                 </div>
             </div>
-        </p>
-        <p class="item__button-purchase">
+        </div>
+        <div class="item__button-purchase">
             <button onclick=location.href="/purchase/{{ $item['id'] }}">購入手続きへ</button>
-        </p>
-        <p class="item__details">
+        </div>
+        <div class="item__details">
             <h3>商品説明</h3>
             <div class="item__description">{{ $item['description'] }}</div>
             <h3>商品の情報</h3>
@@ -61,6 +60,7 @@
                 <tr>
                     <th>商品の状態</th>
                     <td>
+                        <div class="item__condition">
 <?php
 switch ($item['condition']) {
     case 'a':
@@ -77,6 +77,7 @@ switch ($item['condition']) {
         break;
 }
 ?>
+                        </div>
                     </td>
                 </tr>
             </table>
@@ -121,11 +122,11 @@ switch ($item['condition']) {
         </div>
 
 
-        </p>
-        <p class="item__comments">
+        </div>
+        <div>
             <h3>コメント({{$comments_count}})</h3>
 
-                <ul>
+                <ul class="item__comments">
             @foreach ($comments as $comment)
                         <li>
                             <span class="item__comments-icon">
@@ -134,7 +135,7 @@ switch ($item['condition']) {
                             <span class="item__comments-name">
                                 {{ $comment->user->name }}
                             </span>
-                            <div>{{ $comment->comment }}</div>
+                            <div class="item__comments-text">{{ $comment->comment }}</div>
                         </li>
             @endforeach
                 </ul>
@@ -147,15 +148,14 @@ switch ($item['condition']) {
                 <span class="item__comments-name">
                     {{ $comment->user->name }}
                 </span>
-                <div>{{ $comment->comment }}</div>
+                <div class="item__comments-text">{{ $comment->comment }}</div>
             </div>
             @endforeach
-            
             
             <div class="item__comment-form">
                 <span class="comments-form__label">商品へのコメント</span>
                 <form action="/item/{{ $item->id }}" method="POST">@csrf
-                    <div class="form__input--textarea">
+                    <div class="comments-form__textarea">
                         <textarea name="comment" placeholder="" ></textarea>
                     </div>
                     <div class="form__error">
@@ -164,7 +164,7 @@ switch ($item['condition']) {
                         @enderror
                     </div>
                     <div class="form__button">
-                        <button class="form__button-submit" type="submit">コメントを送信する</button>
+                        <button class="comments-form__button" type="submit">コメントを送信する</button>
                     </div>
                 </form>
 
@@ -173,7 +173,7 @@ switch ($item['condition']) {
 
 
 
-        </p>
+        </div>
 
     </div>
 

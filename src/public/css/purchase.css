@@ -1,0 +1,141 @@
+.item__content {
+    display: flex;
+    margin: 0 auto;
+    padding: 60px 40px 0 60px;
+    max-width: 1230px;
+}
+
+.item__left-column{
+    /* background-color: bisque; */
+    width: 70%;
+}
+
+.item__left-column h2 {
+    font-size: 24px;
+}
+
+.item__left-column h3 {
+    font-size: 14px;
+}
+
+.item__image-place {
+    width: 100%;
+    display: flex;
+    padding-bottom: 40px;
+    /* background-color: bisque; */
+    border-bottom: 1px solid #888;
+}
+
+.item__image-wrapper{
+    width: 25%;
+    min-width: 120px;
+}
+
+.item__image-wrapper img {
+    width: 100%;
+}
+
+.item__detail-place{
+    width: 100%;
+    padding-left: 40px;
+}
+
+.item__detail-place{
+    /* background-color: rgb(248, 240, 228); */
+}
+
+.item__price {
+    font-size: 24px;
+}
+
+.item__price-yen {
+    font-size: 75%;
+}
+
+
+/* ---------------------------------------------------- */
+
+.item__method-place{
+    padding-bottom: 40px;
+    padding: 20px 40px 40px 20px;
+    /* background-color: bisque; */
+    border-bottom: 1px solid #888;
+}
+
+.item__method-place select{
+    width: 40%;
+    margin-top: 20px;
+    margin-left:50px;
+    font-size: 12px;
+    padding: 4px;
+}
+
+/* ---------------------------------------------------- */
+
+.item__delivery-place {
+    padding-bottom: 40px;
+    padding: 20px 40px 40px 20px;
+    /* background-color: bisque; */
+    border-bottom: 1px solid #888;
+}
+.item__delivery-place a{
+    text-decoration: none;
+}
+
+.item__delivery-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.item__delivery-content {
+    margin-top: 20px;
+    margin-left: 50px;
+    font-size: 16px;
+    padding: 4px;
+}
+
+/* 
+.item__delivery-place input {
+    margin-top: 20px;
+    margin-left: 50px;
+    font-size: 16px;
+    padding: 4px;
+} */
+
+/* ---------------------------------------------------- */
+
+.item__right-column{
+    width: 50%;
+    padding: 0 0 0 50px;
+    /* background-color: azure; */
+}
+
+.item__information{
+    width: 100%;
+    text-align: center;
+    /* border: 1px solid #888; */
+}
+
+.item__information tr {
+    border: 1px solid #888;
+}
+
+.item__information th{
+    width: 50%;
+    height: 85px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.item__button-purchase button {
+    width: 100%;
+    padding: 5px;
+    margin-top: 50px;
+    border: none;
+    background-color: #f55;
+    color: #fff;
+    cursor: pointer;
+    text-align: center;
+    font-size: 18px;
+
+}

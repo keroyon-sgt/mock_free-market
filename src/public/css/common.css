@@ -8,12 +8,13 @@ body {
 
 .header__inner {
     margin: 0 auto;
-    padding: 10px 20px;
+    padding: 10px 30px;
     max-width: 1230px;
 }
 
 .header__logo {
     width: 25%;
+    min-width: 150px;
 }
 
 .header__logo img{
@@ -23,9 +24,10 @@ body {
 .header-utilities {
     display: flex;
 }
+
 .search-form {
     margin-left: 40px;
-    width: 30%;
+    width: 35%;
 }
 
 .search-form input {
@@ -35,10 +37,19 @@ body {
     border-radius: 5px;
 }
 
+.header-nav {
+    margin-left: auto
+}
+
 .header-nav ul{
     display: flex;
     margin: 0;
 }
+
+.search-form__button{
+    display: none;
+}
+
 
 .header-nav__button {
     border: none;
@@ -47,7 +58,9 @@ body {
     cursor: pointer;
     margin-left: 20px;
     font-size: 18px;
+    white-space: nowrap;
 }
+
 .header-nav__button-sell{
     padding: 3px 15px;
     border: none;
@@ -57,6 +70,7 @@ body {
     margin-left: 20px;
     font-size: 18px;
     border-radius: 3px;
+    white-space: nowrap;
 }
 
 .search-form__button {
@@ -65,4 +79,5 @@ body {
     color: #fff;
     cursor: pointer;
     font-size: 18px;
+    white-space: nowrap;
 }

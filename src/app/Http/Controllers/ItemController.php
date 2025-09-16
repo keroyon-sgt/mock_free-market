@@ -41,6 +41,8 @@ class ItemController extends Controller
 
         $item = Item::find($item_id);
 
+        $item->price = number_format($item->price);
+
         $item_categories = ItemCategory::where('item_id', $item_id)->get();
 
         $property=array();
@@ -63,13 +65,13 @@ class ItemController extends Controller
 
         foreach($comments as $comment){
 
-echo '<br /><br />comment->user->portrait_path = ';
-var_dump($comment->user->portrait_path);
+// echo '<br /><br />comment->user->portrait_path = ';
+// var_dump($comment->user->portrait_path);
 
             if(!$comment->user->portrait_path){ $comment->user->portrait_path = 'unknown.jpg'; }
 
-echo '<br /><br />comment->user->portrait_path after= ';
-var_dump($comment->user->portrait_path);
+// echo '<br /><br />comment->user->portrait_path after= ';
+// var_dump($comment->user->portrait_path);
 
         }
 
@@ -78,10 +80,17 @@ var_dump($comment->user->portrait_path);
 
         $duplication=FALSE;
         if (Auth::check()) {
-            $user = Auth::user(); // ログインユーザーのモデルを取得
-            if( !Like::where('user_id', $user->id)->where('item_id', $item_id) ){
+            $user = Auth::user();
+
+            $user_like = Like::where('user_id', $user->id)->where('item_id', $item_id)->count();
+            if( $user_like ){
                 $duplication=TRUE;
             }
+
+// echo '<br /><br />Like::';
+// var_dump(Like::where('user_id', $user->id)->where('item_id', $item_id)->count());
+
+
         }
         
 
@@ -117,11 +126,11 @@ var_dump($comment->user->portrait_path);
     public function comment(Request $request, $item_id)
     {
         
-echo '<br />comment() ';
+// echo '<br />comment() ';
 // echo '<br />get = ';
 // var_dump($_GET);
-echo '<br />post = ';
-var_dump($_POST);
+// echo '<br />post = ';
+// var_dump($_POST);
 // echo '<br />session(id) = ';
 // var_dump(session('item_id'));
 // echo '<br />file(image) = ';
@@ -164,8 +173,8 @@ var_dump($_POST);
     public function like($item_id)  //Request $request, 
     {
         
-echo '<br />like() ';
-echo __FUNCTION__;
+// echo '<br />like() ';
+// echo __FUNCTION__;
 // echo '<br />get = ';
 // var_dump($_GET);
 // echo '<br />post = ';
@@ -190,7 +199,7 @@ echo __FUNCTION__;
 // echo '<br />image_path = ';
 // // var_dump(basename($image_path));
 
-        if( !$duplication=Like::where('user_id', $user->id)->where('item_id', $item_id) )
+        if( !$duplication=Like::where('user_id', $user->id)->where('item_id', $item_id)->count() )
         {
             $like = Like::create([
                 'user_id' => $user->id,
@@ -226,8 +235,8 @@ echo __FUNCTION__;
         
 // echo '<br />get = ';
 // var_dump($_GET);
-echo '<br />post = ';
-var_dump($_POST);
+// echo '<br />post = ';
+// var_dump($_POST);
 // echo '<br />session(id) = ';
 // var_dump(session('item_id'));
 // echo '<br />file(image) = ';
@@ -291,8 +300,8 @@ var_dump($_POST);
         ]);
 
 
-echo '<br /><br />item->id = ';
-var_dump($item->id);
+// echo '<br /><br />item->id = ';
+// var_dump($item->id);
 
 
 
@@ -345,6 +354,7 @@ var_dump($item->id);
 
         return redirect('/');
     }
+ //----------------------------------------------------------------------
 
     public function purchaseForm($item_id)  //Request $request
     {
@@ -366,6 +376,8 @@ var_dump($item->id);
 
         $item = Item::find($item_id);
 
+        $price_formed = number_format($item->price);
+
         if (Auth::check()) {
             $user = Auth::user(); // ログインユーザーのモデルを取得
         } else {
@@ -386,16 +398,16 @@ var_dump($item->id);
 
         session()->put('price', $item->price);
 
-echo '<br />get = ';
-var_dump($_GET);
-echo '<br />post = ';
-var_dump($_POST);
-echo '<br />postal_code = ';
-var_dump(session('postal_code'));
-echo '<br />delivery = ';
-var_dump(session('delivery'));
-echo '<br />price = ';
-var_dump(session('price'));
+// echo '<br />get = ';
+// var_dump($_GET);
+// echo '<br />post = ';
+// var_dump($_POST);
+// echo '<br />postal_code = ';
+// var_dump(session('postal_code'));
+// echo '<br />delivery = ';
+// var_dump(session('delivery'));
+// echo '<br />price = ';
+// var_dump(session('price'));
 // echo '<br />user->id = ';
 // var_dump($user);
 // echo '<br />session(id) = ';
@@ -406,7 +418,7 @@ var_dump(session('price'));
         // return $Item;
         // return view('confirm');
         // return view('confirm', ['Item' => $Item]);
-        return view('purchase', compact('item', 'user', 'delivery') );
+        return view('purchase', compact('item', 'price_formed', 'user', 'delivery') );
     }
 
     
@@ -415,15 +427,15 @@ var_dump(session('price'));
     public function purchase(Request $request)  //PurchaseRequest
     {
 
-echo __FUNCTION__;
+// echo __FUNCTION__;
 // echo '<br /><br />item_id = ';
 // var_dump($item_id);
-echo '<br />get = ';
-var_dump($_GET);
-echo '<br />post = ';
-var_dump($_POST);
-echo '<br />item(id) = ';
-var_dump(session('item_id'));
+// echo '<br />get = ';
+// var_dump($_GET);
+// echo '<br />post = ';
+// var_dump($_POST);
+// echo '<br />item(id) = ';
+// var_dump(session('item_id'));
 // echo '<br />session(id) = ';
 // var_dump( session()->get('item_id') );
 // echo '<br />session = ';
@@ -453,8 +465,8 @@ var_dump(session('item_id'));
         // $purchase['building'] = $delivery['building'];
         // $purchase['price'] = $delivery['price'];
 
-echo '<br />purchase = ';
-var_dump($purchase);
+// echo '<br />purchase = ';
+// var_dump($purchase);
 
 // exit;
             //if(session address)sessionからaddressを抜き出す
@@ -503,14 +515,14 @@ var_dump($purchase);
 
 
 
-echo '<br />get = ';
-var_dump($_GET);
-echo '<br />post = ';
-var_dump($_POST);
-echo '<br />session(id) = ';
-var_dump(session('item_id'));
-echo '<br />session(id) = ';
-var_dump( session()->get('item_id') );
+// echo '<br />get = ';
+// var_dump($_GET);
+// echo '<br />post = ';
+// var_dump($_POST);
+// echo '<br />session(id) = ';
+// var_dump(session('item_id'));
+// echo '<br />session(id) = ';
+// var_dump( session()->get('item_id') );
 // echo '<br />session = ';
 // var_dump(Session::getId());
 
@@ -535,14 +547,14 @@ var_dump( session()->get('item_id') );
 // var_dump($_GET);
 // echo '<br />post = ';
 // var_dump($_POST);
-echo '<br />session(item_id) = ';
-var_dump(session('item_id'));
+// echo '<br />session(item_id) = ';
+// var_dump(session('item_id'));
 // echo '<br />session(id) = ';
 // var_dump( session()->get('item_id') );
-echo '<br />session(delivery) = ';
-var_dump(session('delivery'));
-echo '<br />session(delivery) = ';
-var_dump(session('delivery')['postal_code']);
+// echo '<br />session(delivery) = ';
+// var_dump(session('delivery'));
+// echo '<br />session(delivery) = ';
+// var_dump(session('delivery')['postal_code']);
 // echo '<br />session = ';
 // var_dump(Session::getId());
 

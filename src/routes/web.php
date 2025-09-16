@@ -49,6 +49,9 @@ Route::post('/item/{item_id}', [ItemController::class, 'comment']);
 
 Route::get('/like/{item_id}', [ItemController::class, 'like']);
 
+Route::get('/search', [ItemController::class, 'search']);
+
+
 Route::get('/purchase/{item_id}', [ItemController::class, 'purchaseForm']);
 Route::post('/purchase', [ItemController::class, 'purchase']);
 

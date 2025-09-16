@@ -1,3 +1,7 @@
+@php
+    $title = 'ログイン　';
+@endphp
+
 @extends('layouts.app_simpleHeader')
 
 @section('css')
@@ -8,17 +12,17 @@
 
 <div class="login-form__content">
     <div class="login-form__heading">
-        <h2>Login</h2>
+        <h2>ログイン</h2>
     </div>
     <form class="form" action="/login" method="post">
     @csrf
         <div class="form__group">
             <div class="form__group-title">
-                <span class="form__label--item">メールアドレス</span>
+                <span class="form__label-item">メールアドレス</span>
             </div>
             <div class="form__group-content">
-                <div class="form__input--text">
-                    <input type="email" name="email" value="{{ old('email') }}" placeholder="例：test@example.com" />
+                <div class="form__input-text">
+                    <input type="email" name="email" value="{{ old('email') }}" />
                 </div>
                 <div class="form__error">
                     @error('email')
@@ -29,11 +33,11 @@
         </div>
         <div class="form__group">
             <div class="form__group-title">
-                <span class="form__label--item">パスワード</span>
+                <span class="form__label-item">パスワード</span>
             </div>
             <div class="form__group-content">
-                <div class="form__input--text">
-                    <input type="password" name="password" placeholder="例：coachtech1106" />
+                <div class="form__input-text">
+                    <input type="password" name="password" />
                 </div>
                 <div class="form__error">
                     @error('password')
@@ -53,13 +57,13 @@
 
 
 
-{{ route('login') }}
+<!-- {{ route('login') }} -->
 <br />
-{{ route('logout') }}
+<!-- {{ route('logout') }} -->
 
 <?php
-echo'<br />Auth check =';
-var_dump(Auth::check());
+// echo'<br />Auth check =';
+// var_dump(Auth::check());
 ?>
 
 
