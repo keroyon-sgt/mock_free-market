@@ -91,7 +91,7 @@
         if (event.key === 'Enter') {
             searchForm.submit();
         }
-        console.log('test')
+        // console.log('test')
     });
 </script>
 

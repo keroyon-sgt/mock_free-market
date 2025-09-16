@@ -32,7 +32,7 @@ class ItemController extends Controller
 
         return view('index', compact('items') );//['items'=>$items]
     }
-
+// ----------------------------------------------------------------
     public function item($item_id)
     {
 
@@ -92,7 +92,6 @@ class ItemController extends Controller
 
 
         }
-        
 
 // echo '<br /><br />categories';
 // var_dump($categories);
@@ -122,7 +121,7 @@ class ItemController extends Controller
         return view('item', compact('item', 'category_list', 'comments', 'comments_count', 'likes_count', 'duplication') );
     }
 
-
+// --------------------------------------------------------------------
     public function comment(Request $request, $item_id)
     {
         
@@ -169,7 +168,7 @@ class ItemController extends Controller
 
         return redirect('/item/'.$item_id);
     }
-
+// --------------------------------------------------------------------
     public function like($item_id)  //Request $request, 
     {
         
@@ -221,7 +220,7 @@ class ItemController extends Controller
         return redirect('/item/'.$item_id);
     }
 
-
+// --------------------------------------------------------------------
     public function sellForm()
     {
         // $items = Item::all();
@@ -494,6 +493,7 @@ class ItemController extends Controller
 
 // echo '<br /><br />item_id = ';
 // var_dump($item_id);
+
         $item_id=session('item_id');
         // session()->put('item_id', $item_id);
         // $item = Item::find($item_id);
@@ -528,7 +528,7 @@ class ItemController extends Controller
 
         return view('address', compact('delivery'));    //, 'item_id'
     }
-
+// --------------------------------------------------------------------
     public function addressSet(AddressRequest $request)
     {
 
@@ -566,7 +566,7 @@ class ItemController extends Controller
         return redirect('purchase/'.session('item_id') );
     }
 
-
+// --------------------------------------------------------------------
 
     // public function store(Request $request)
     public function store(ItemRequest $request)
@@ -595,6 +595,8 @@ class ItemController extends Controller
         return view('thanks');
     }
 
+    // --------------------------------------------------------------------
+
     public function destroy(Request $request)
     {
         Item::find($request->id)->delete();
@@ -602,10 +604,12 @@ class ItemController extends Controller
         return redirect('/admin');//->with('message', 'お問い合わせを削除しました');
     }
 
+    // --------------------------------------------------------------------
+
     public function admin(Request $request)
     {
 
-        $Items = Item::paginate(7);
+        $items = Item::paginate(7);
 
 
         $categories = Category::all();
@@ -617,7 +621,7 @@ class ItemController extends Controller
 
         $form_action = '/export';
 
-        return view('admin', compact('Items', 'category_list', 'categories', 'request', 'form_action'));
+        return view('admin', compact('items', 'category_list', 'categories', 'request', 'form_action'));
     }
 
     // public function category()
@@ -639,101 +643,55 @@ class ItemController extends Controller
     //     }
     // }
 
+    // --------------------------------------------------------------------
+
     public function search(Request $request)
     {
-        
-        $Items = Item::with('category')
-        // $Items = Item::query()
-            ->CategorySearch($request->category_id)
-            ->DateSearch($request->created_at)
-            ->GenderSearch($request->gender)
+
+echo __FUNCTION__;
+echo '<br />get = ';
+var_dump($_GET);
+// echo '<br />request = ';
+// var_dump($request);
+
+        $items = Item::with('category')
             ->KeywordSearch($request->keyword)
             ->get();
         
-        // $Items = $Items->paginate(7)->withQueryString();
-// echo '<br />Items = ';
-// var_dump($Items);
+// $items = $items->paginate(7)->withQueryString();
+echo '<br />items = ';
+var_dump($items);
 
         $query = Item::query();
-        if ($value = $request->category_id) {
-            $query->where('category_id', $value);
-
-// echo '<br /><br />value(category_id) = ';
-// var_dump($value);
-// echo '<br /><br />query = ';
-// var_dump($query);
-
-        }
-        if ($value = $request->gender) {
-            $query->where('gender', $value);
-
-// echo '<br /><br />value(g) = ';
-// var_dump($value);
-// echo '<br /><br />query = ';
-// var_dump($query);
-
-        }
-        if ($value = $request->created_at) {
-            $query->where('created_at', $value.'%');
-
-// echo '<br /><br />value(c) = ';
-// var_dump($value);
-// echo '<br /><br />query = ';
-// var_dump($query);
-
-        }
         if ($value = $request->keyword) {
-            $query->where('email', 'LIKE', "%{$value}%")
-                ->orWhere('detail', 'LIKE', "%{$value}%")
-                ->orWhere('email', 'LIKE', "%{$value}%")
-                ->orWhere('last_name', 'LIKE', "%{$value}%")
-                ->orWhere('first_name', 'LIKE', "%{$value}%");
+            $query->where('title', 'LIKE', "%{$value}%")
+                ->orWhere('brand', 'LIKE', "%{$value}%")
+                ->orWhere('description', 'LIKE', "%{$value}%")
+                ->orWhere('price', 'LIKE', "%{$value}%");
 
 // echo '<br /><br />value(k) = ';
 // var_dump($value);
 // echo '<br /><br />query = ';
 // var_dump($query);
 
-
         }
-        $Items = $query->paginate(7)->withQueryString();
 
-// echo '<br /><br />category_id = ';
-// var_dump($request->category_id);
-// echo '<br /><br />gender = ';
-// var_dump($request->gender);
-// echo '<br /><br />created_at = ';
-// var_dump($request->created_at);
+
+        $items = $query->paginate(7)->withQueryString();
+
 // echo '<br /><br />keyword = ';
 // var_dump($request->keyword);
 
-// echo '<br /><br />Items = ';
-// var_dump($Items);
+// echo '<br /><br />items = ';
+// var_dump($items);
 // exit;
 
-        $categories = Category::all();
-
-        $category_list=array();
-        foreach($categories as $category){
-            $category_list += array($category['id']=>$category['content']);
-        }
-
-        $form_action = '/export/search';
-
-// echo '<br />categories';
-// var_dump($categories);
-// echo '<br />category_list';
-// var_dump($category_list);
 // exit;
 
-        return view('admin', compact('Items', 'category_list', 'request', 'form_action'));
+        return view('index', compact('items'));
     }
 
-    public function test(){ return view('test'); }
-    public function test_js01(){ return view('test_js01'); }
-    public function test_js02(){ return view('test_js02'); }
-
-    public function thanks(){ return view('thanks'); }
+    // --------------------------------------------------------------------
 
 
 }
