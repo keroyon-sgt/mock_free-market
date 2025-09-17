@@ -3,7 +3,7 @@
 ##環境構築
 ###Docker ビルド
 
-1. git clone git@github.com:keroyon-sgt/task_contact-form.git
+1. git clone git@github.com:keroyon-sgt/mock_free-market.git
 2. docker-compose up -d --build
 
 ###Laravel 環境構築
