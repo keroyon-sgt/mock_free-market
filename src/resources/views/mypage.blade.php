@@ -1,3 +1,7 @@
+@php
+    $title = 'マイページ　';
+@endphp
+
 @extends('layouts.app')
 
 @section('css')
