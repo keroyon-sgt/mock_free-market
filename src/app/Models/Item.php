@@ -19,7 +19,6 @@ class Item extends Model
         'image_path',
         'condition',
         'stock',
-        'detail',
         'is_deleted',
     ];
 

@@ -20,6 +20,7 @@
 4. php artisan key:generate
 5. php artisan migrate
 6. php artisan db:seed
+7. src\public\img にある画像ファイル 1～10.jpg、unknown.jpg を src\storage\app\public に移動またはコピー
 
 ##使用技術
 ・php 8.0
@@ -33,3 +34,4 @@
 ##URL
 ・開発環境：http://localhost
 ・phpMyAdmin：http://localhost:8080
+・MailHog：http://localhost:8025

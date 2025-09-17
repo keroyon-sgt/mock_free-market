@@ -27,6 +27,7 @@ class CreateUsersTable extends Migration
 
             $table->rememberToken();
             $table->timestamps();
+            $table->tinyInteger('is_deleted')->nullable();
         });
     }
 

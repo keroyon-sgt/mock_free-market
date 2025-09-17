@@ -82,9 +82,6 @@ switch ($item['condition']) {
                 </tr>
             </table>
 
-
-
-
         <div class="item__information">
             <div class="item__information-title">
                 <span class="">カテゴリー</span>
@@ -126,32 +123,20 @@ switch ($item['condition']) {
         <div>
             <h3>コメント({{$comments_count}})</h3>
 
-                <ul class="item__comments">
-            @foreach ($comments as $comment)
-                        <li>
-                            <span class="item__comments-icon">
-                                <img src="/storage/{{ $comment->user->portrait_path }}" alt="{{ $comment->user->name }}" />
-                            </span>
-                            <span class="item__comments-name">
-                                {{ $comment->user->name }}
-                            </span>
-                            <div class="item__comments-text">{{ $comment->comment }}</div>
-                        </li>
-            @endforeach
-                </ul>
-            
-            @foreach ($comments as $comment)
-            <div>
-                <span class="item__comments-icon">
-                    <img src="/storage/{{ $comment->user->portrait_path }}" alt="{{ $comment->user->name }}" />
-                </span>
-                <span class="item__comments-name">
-                    {{ $comment->user->name }}
-                </span>
-                <div class="item__comments-text">{{ $comment->comment }}</div>
-            </div>
-            @endforeach
-            
+            <ul class="item__comments">
+    @foreach ($comments as $comment)
+                <li>
+                    <span class="item__comments-icon">
+                        <img src="/storage/{{ $comment->user->portrait_path }}" alt="{{ $comment->user->name }}" />
+                    </span>
+                    <span class="item__comments-name">
+                        {{ $comment->user->name }}
+                    </span>
+                    <div class="item__comments-text">{{ $comment->comment }}</div>
+                </li>
+    @endforeach
+            </ul>
+
             <div class="item__comment-form">
                 <span class="comments-form__label">商品へのコメント</span>
                 <form action="/item/{{ $item->id }}" method="POST">@csrf
@@ -167,38 +152,9 @@ switch ($item['condition']) {
                         <button class="comments-form__button" type="submit">コメントを送信する</button>
                     </div>
                 </form>
-
             </div>
-
-
-
-
         </div>
-
     </div>
-
-
 </div>
-
-<hr>
-<!-- ------------------------------------------------------------ -->
-
-
-    <!-- @if(session('success'))
-        <div id="alert-message" class="alert alert-success">{{ session('success') }}</div>
-    @endif
-    @if ($errors->any())
-        <div id="alert-messages" class="alert alert-danger">
-            <ul>
-        @foreach ($errors->all() as $error_num=>$error)
-            <li>{{ $error_num }} &nbsp;{{ $error }}</li>
-        @endforeach
-            </ul>
-        </div>
-    @endif 
-@error('correct')
-    {{ $message }}
-@enderror -->
-
 
 @endsection
