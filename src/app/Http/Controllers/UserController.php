@@ -20,15 +20,15 @@ use Laravel\Fortify\Contracts\CreatesNewUsers;
 
 use App\Http\Controllers\Controller;
 
+// use Mail;
+use Illuminate\Support\Facades\Mail;
 
 
 
 class UserController extends Controller
 {
-    
     public function registerForm()
     {
-        
         return view('register');
     }
 
@@ -53,11 +53,15 @@ class UserController extends Controller
 
         // User::create($user);
 
+
+//---------------
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+//------------------
+
 
         // if (!Auth::check()) {
         //     $user = $request->only([
@@ -71,23 +75,55 @@ class UserController extends Controller
         //         return redirect('/')->with('message', 'ログインしました');
         //     }
         // }
-        
+
+        //------------------------------------------
+
+        // $verificationUrl = $this->verificationUrl($notifiable);
+
+        // $notifiable = 6 ;
+        // $verificationUrl = $this->verificationUrl($notifiable);
+
+        // $data = [];
+        // Mail::send('verify', $data, function($message) use($request){
+        //     $message->to($request->email, $request->name)
+        //     ->subject('メール認証');
+        // });
+
+        $user->sendEmailVerificationNotification();
+        //------------------------------------------
+exit;
         // return back();
         return redirect('verify')->with('message', '登録しました');
     }
-    
-public function verify()
+
+    public function verify()
     {
         // メールを送る処理
         return view('verify');
     }
-    
-public function verification()
+
+    public function verification(Request $request) //: RedirectResponse
     {
-        
-        return redirect('profile')->with('message', '認証しました');
+        $user = $request->user();
+
+        if ($user->hasVerifiedEmail()) {
+            // return redirect()->intended(RouteServiceProvider::HOME.'?verified=1');
+            return redirect('/profile')->with('message', 'すでに認証がされています');
+        }
+
+        // email_verified_atカラムの更新
+        if ($user->markEmailAsVerified()) {
+            event(new Verified($user));
+        }
+
+    // return redirect()->intended(RouteServiceProvider::HOME.'?verified=1');
+
+
+exit;
+
+
+        return redirect('/profile')->with('message', '認証しました');
     }
-    
 
     public function profileForm()
     {

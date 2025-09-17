@@ -648,9 +648,9 @@ class ItemController extends Controller
     public function search(Request $request)
     {
 
-echo __FUNCTION__;
-echo '<br />get = ';
-var_dump($_GET);
+// echo __FUNCTION__;
+// echo '<br />get = ';
+// var_dump($_GET);
 // echo '<br />request = ';
 // var_dump($request);
 
@@ -659,8 +659,8 @@ var_dump($_GET);
             ->get();
         
 // $items = $items->paginate(7)->withQueryString();
-echo '<br />items = ';
-var_dump($items);
+// echo '<br />items = ';
+// var_dump($items);
 
         $query = Item::query();
         if ($value = $request->keyword) {

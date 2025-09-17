@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
-
+// use App\Http\Controllers\MailSendController;
 
 use App\Providers\FortifyServiceProvider;
 
@@ -26,7 +26,19 @@ Route::get('/', [ItemController::class, 'index']);
 
 Route::get('/register', [UserController::class, 'registerForm']);
 Route::post('/register', [UserController::class, 'register']);
+
+
 Route::get('/verify', [UserController::class, 'verify']);
+
+//---------------------------------------------------------------------
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+
+    return back()->with('message', '確認メールを再送信しました。');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
+// Route::get('/mail', [MailSendController::class, 'index']);
+//---------------------------------------------------------------------
 
 Route::get('/login', [AuthController::class, 'loginForm']);
 Route::post('/login', [AuthController::class, 'login'])->name('login');
@@ -37,6 +49,13 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 //     // ログイン画面
 //     Route::get('login', [AuthenticatedSessionController::class, 'create'])->name('login');
 // });
+
+//メール認証
+// Route::get('/register', [UserController::class, 'registerForm'])
+//     ->middleware(['auth', 'verified']);
+
+
+// Route::middleware('auth')->group(function () { Route::get('/', [AuthController::class, 'index']); });
 
 //-------------------------------------------
 
@@ -62,5 +81,3 @@ Route::get('/mypage', [UserController::class, 'mypage']);
 Route::get('/mypage/profile', [UserController::class, 'profileForm']);
 Route::post('/mypage/profile', [UserController::class, 'profileSave']);
 
-
-// Route::middleware('auth')->group(function () { Route::get('/', [AuthController::class, 'index']); });
