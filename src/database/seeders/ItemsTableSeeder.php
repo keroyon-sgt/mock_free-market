@@ -31,7 +31,7 @@ class ItemsTableSeeder extends Seeder
 
         $param = [
             'id' => 2,
-            'user_id' => 1,
+            'user_id' => 2,
             'title' => 'HDD',
             'price' => '5000',
             'brand' => '西芝',
@@ -44,7 +44,7 @@ class ItemsTableSeeder extends Seeder
 
         $param = [
             'id' => 3,
-            'user_id' => 1,
+            'user_id' => 3,
             'title' => '玉ねぎ3束',
             'price' => '300',
             'brand' => 'なし',
@@ -57,7 +57,7 @@ class ItemsTableSeeder extends Seeder
 
         $param = [
             'id' => 4,
-            'user_id' => 1,
+            'user_id' => 4,
             'title' => '革靴',
             'price' => '4000',
             'brand' => '',
@@ -70,7 +70,7 @@ class ItemsTableSeeder extends Seeder
 
         $param = [
             'id' => 5,
-            'user_id' => 1,
+            'user_id' => 5,
             'title' => 'ノートPC',
             'price' => '45000',
             'brand' => '',
@@ -83,7 +83,7 @@ class ItemsTableSeeder extends Seeder
 
         $param = [
             'id' => 6,
-            'user_id' => 1,
+            'user_id' => 6,
             'title' => 'マイク',
             'price' => '8000',
             'brand' => 'なし',
@@ -96,7 +96,7 @@ class ItemsTableSeeder extends Seeder
 
         $param = [
             'id' => 7,
-            'user_id' => 1,
+            'user_id' => 7,
             'title' => 'ショルダーバッグ',
             'price' => '3500',
             'brand' => '',
@@ -109,7 +109,7 @@ class ItemsTableSeeder extends Seeder
 
         $param = [
             'id' => 8,
-            'user_id' => 1,
+            'user_id' => 8,
             'title' => 'タンブラー',
             'price' => '500',
             'brand' => 'なし',
@@ -122,7 +122,7 @@ class ItemsTableSeeder extends Seeder
 
         $param = [
             'id' => 9,
-            'user_id' => 1,
+            'user_id' => 9,
             'title' => 'コーヒーミル',
             'price' => '4000',
             'brand' => 'Starbacks',
@@ -135,7 +135,7 @@ class ItemsTableSeeder extends Seeder
 
         $param = [
             'id' => 10,
-            'user_id' => 2,
+            'user_id' => 10,
             'title' => 'メイクセット',
             'price' => '2500',
             'brand' => '',
