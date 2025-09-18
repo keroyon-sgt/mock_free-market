@@ -19,7 +19,9 @@
 
 4. php artisan key:generate
 5. php artisan migrate
-6. php artisan db:seed
+6. php artisan db:seed  
+   生成されるユーザーのパスワードはすべて”password”
+   
 7. src\public\img にある画像ファイル 1 ～ 10.jpg、unknown.jpg を src\storage\app\public に移動またはコピー
 
 ##使用技術  
